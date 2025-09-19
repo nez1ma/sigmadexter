@@ -1,15 +1,35 @@
-from revision.hw_functions_utils import say_hello, find_max_number, multiply_numbers
-
+from revision.utils import (
+    greet_person,
+    is_even,
+    reverse_string,
+    calculate_average,
+    add_person_to_list,
+    count_vowels,
+    fahrenheit_to_celsius,
+)
 
 def main():
-    print(say_hello())
+    print(greet_person())
+    print(greet_person("Іван"))
 
-    print(find_max_number([1, 2, "x", 3.5, -10]))
-    print(find_max_number([]))
+    print(is_even(4))
+    print(is_even(7))
 
-    print(multiply_numbers(4, 5))
-    print(multiply_numbers(2.5, 2))
+    print(reverse_string("Python"))
 
+    print(calculate_average([1, 2, 3, 4, 5]))
+    print(calculate_average([]))
+
+    people = ["Anna", "Oleh"]
+    updated = add_person_to_list(people, "Marta")
+    print("Original:", people)
+    print("Updated:", updated)
+
+    print(count_vowels("Привіт, World!"))
+
+    print(fahrenheit_to_celsius(32))
+    print(fahrenheit_to_celsius(212))
 
 if __name__ == "__main__":
     main()
+
