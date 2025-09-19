@@ -58,4 +58,3 @@ def fahrenheit_to_celsius(f: float) -> float:
     result = (f - 32) * 5.0 / 9.0
     send_log(f"fahrenheit_to_celsius({f}) -> {result}")
     return result
-
