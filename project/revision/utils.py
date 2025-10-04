@@ -8,7 +8,6 @@ HOST = "https://s1523333.eu-nbg-2.betterstackdata.com"
 
 
 def send_log(message: str):
-    """Отправка логов на сервер"""
     payload = {
         "dt": datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S UTC"),
         "message": message
