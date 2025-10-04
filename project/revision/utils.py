@@ -1,23 +1,19 @@
 from typing import List
 import requests
 import json
-from datetime import datetime
 
 SOURCE_TOKEN = "dUcpSF6YYLDjP7h3zDepDNip"
 HOST = "https://s1523333.eu-nbg-2.betterstackdata.com"
 
 def send_log(message: str):
-    payload = {
-        "dt": datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S UTC"),
-        "message": message
-    }
+    payload = {"message": message}
     headers = {
         "Content-Type": "application/json",
         "Authorization": f"Bearer {SOURCE_TOKEN}"
     }
     try:
         r = requests.post(HOST, headers=headers, data=json.dumps(payload))
-        if r.status_code != 202:
+        if r.status_code not in (200, 202):
             print(f"Failed to send log, status code: {r.status_code}")
     except Exception as e:
         print("Failed to send log:", e)
@@ -49,8 +45,8 @@ def add_person_to_list(people: List[str], person: str) -> List[str]:
     return new_list
 
 def count_vowels(text: str) -> int:
-    vowels = "aeiouаеєиіїоуюяAEIOUАЕЄИІЇОУЮЯ"
-    result = sum(1 for ch in text if ch in vowels)
+    vowels = "aeiouаеєиіїоуюя"
+    result = sum(1 for ch in text.lower() if ch in vowels)
     send_log(f"count_vowels({text}) -> {result}")
     return result
 
