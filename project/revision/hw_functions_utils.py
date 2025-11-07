@@ -1,4 +1,4 @@
-from typing import List, Union
+from typing import List, Union, Callable, Any, Dict
 import logging.handlers
 import requests
 import json
@@ -20,6 +20,14 @@ def send_log(message: str) -> None:
             print(f"Failed to send log, status code: {r.status_code}")
     except Exception as e:
         print(f"Error sending log: {e}")
+
+
+def wrap_in_dict(func: Callable) -> Callable:
+    def wrapper(*args, **kwargs) -> Dict[str, Any]:
+        function_result = func(*args, **kwargs)
+        return {"result": function_result}
+
+    return wrapper
 
 
 def say_hello() -> str:
@@ -80,5 +88,3 @@ def get_ticket_price(age: int) -> float:
 
     send_log(f"get_ticket_price({age}) -> {result}")
     return result
-
-
