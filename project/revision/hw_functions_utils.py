@@ -1,5 +1,5 @@
 from typing import List, Union, Callable, Any, Dict
-from functools import wraps  # Добавлен только для декоратора
+from functools import wraps
 import logging.handlers
 import requests
 import json
@@ -88,7 +88,7 @@ def get_auto_distance(speed: float, time: float) -> float:
 
 
 def get_ticket_price(age: int) -> float:
-    BASE_PRICE = 100.0
+    BASE_PRICE = 100.00
 
     if age < 6:
         result = 0.0
