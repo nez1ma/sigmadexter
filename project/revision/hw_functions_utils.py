@@ -1,4 +1,5 @@
 from typing import List, Union, Callable, Any, Dict
+from functools import wraps  # Добавлен только для декоратора
 import logging.handlers
 import requests
 import json
@@ -23,11 +24,23 @@ def send_log(message: str) -> None:
 
 
 def wrap_in_dict(func: Callable) -> Callable:
+    @wraps(func)
     def wrapper(*args, **kwargs) -> Dict[str, Any]:
         function_result = func(*args, **kwargs)
         return {"result": function_result}
-
     return wrapper
+
+
+def round_result(ndigits: int) -> Callable:
+    def decorator(func: Callable) -> Callable:
+        @wraps(func)
+        def wrapper(*args: Any, **kwargs: Any) -> Any:
+            result = func(*args, **kwargs)
+            if isinstance(result, (int, float)):
+                return round(result, ndigits)
+            return result
+        return wrapper
+    return decorator
 
 
 def say_hello() -> str:
