@@ -88,7 +88,7 @@ def get_auto_distance(speed: float, time: float) -> float:
 
 
 def get_ticket_price(age: int) -> float:
-    BASE_PRICE = 100.00
+    BASE_PRICE = 100.0
 
     if age < 6:
         result = 0.0

@@ -1,35 +1,23 @@
-from revision.utils import (
-    greet_person,
-    is_even,
-    reverse_string,
-    calculate_average,
-    add_person_to_list,
-    count_vowels,
-    fahrenheit_to_celsius
-)
+from revision.book import Book
+from revision.library import Library
 
 def main():
-    print(greet_person())
-    print(greet_person("Іван"))
+    library = Library("бібліотека1")
 
-    print(is_even(4))
-    print(is_even(7))
+    book1 = Book("автор1", "книга1")
+    book2 = Book("автор2", "книга2")
+    book3 = Book("автор3", "книга3")
 
-    print(reverse_string("Python"))
+    library.add_book(book1)
+    library.add_book(book2)
+    library.add_book(book3)
 
-    print(calculate_average([1, 2, 3, 4, 5]))
-    print(calculate_average([]))
-
-    people = ["Anna", "Oleh"]
-    updated_people = add_person_to_list(people, "Marta")
-    print("Original:", people)
-    print("Updated:", updated_people)
-
-    print(count_vowels("Привіт, World!"))
-    print(fahrenheit_to_celsius(32))
-    print(fahrenheit_to_celsius(212))
+    library.show_books()
+    library.remove_book(book2.id)
+    library.show_books()
 
 if __name__ == "__main__":
     main()
+
 
 
